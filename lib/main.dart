@@ -39,52 +39,72 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Center(child: Text(widget.title)),
       ),
-      body: Row(
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: GridView.count(
-              crossAxisCount: 3,
-              children: [
-                for (var i = 0; i < 9; i++)
-                  InkWell(
-                    splashColor: Colors.red,
-                    onTap: (() {
-                      setState(() {
-                        tiles[i] = 1;
-                        _runAi();
-                      });
-                    }),
-                    child: Center(
-                      child: Text(tiles[i] == 0
-                          ? ''
-                          : tiles[i] == 1
-                              ? 'X'
-                              : '0'),
-                    ),
-                  )
-              ],
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(isWinning(1, tiles)
-                  ? 'You Won!'
-                  : isWinning(2, tiles)
-                      ? 'You Lost'
-                      : 'Your Move'),
-              OutlinedButton(
-                onPressed: () {
-                  setState(() {
-                    tiles = List.filled(9, 0);
-                  });
-                },
-                child: const Text('Restart Game'),
-              )
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            stops: [
+              0.1,
+              0.4,
+              0.6,
+              0.9,
+            ],
+            colors: [
+              Colors.yellow,
+              Colors.red,
+              Colors.indigo,
+              Colors.teal,
             ],
           ),
-        ],
+        ),
+        child: Row(
+          children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: GridView.count(
+                crossAxisCount: 3,
+                children: [
+                  for (var i = 0; i < 9; i++)
+                    InkWell(
+                      splashColor: Colors.red,
+                      onTap: (() {
+                        setState(() {
+                          tiles[i] = 1;
+                          _runAi();
+                        });
+                      }),
+                      child: Center(
+                        child: Text(tiles[i] == 0
+                            ? 'Click Me'
+                            : tiles[i] == 1
+                                ? 'X'
+                                : '0'),
+                      ),
+                    )
+                ],
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(isWinning(1, tiles)
+                    ? 'You Won!'
+                    : isWinning(2, tiles)
+                        ? 'You Lost'
+                        : 'Your Move'),
+                OutlinedButton(
+                  onPressed: () {
+                    setState(() {
+                      tiles = List.filled(9, 0);
+                    });
+                  },
+                  child: const Text('Restart Game'),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
