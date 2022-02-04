@@ -1,6 +1,9 @@
 # tictactoe
 
-A new Flutter project.
+A Flutter game, built to explore Flutter 2.10. A tic-tac-toe game built using a 2D List
+to explore basic DSA concepts, and sort of challenge myself.
+
+Pull! Pull!
 
 ## Getting Started
 
